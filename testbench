@@ -1,0 +1,20 @@
+module barrel_tb( );
+parameter n=8;parameter s=3;
+wire [n-1:0]dataout;
+reg [n-1:0] datain;
+reg [s-1:0]shift;
+reg cntrl;reg [1:0]op;
+barrel_shifter #(8,3)dut(dataout,datain,shift,cntrl,op);
+initial
+begin
+datain=8'd129;
+shift=3'd5;
+cntrl=1;
+op=2'd0;
+#20 op=2'd1;
+#20 op=2'd2;
+#20 op=2'd3;
+#100 cntrl=0;
+#200 $finish;
+end
+endmodule
